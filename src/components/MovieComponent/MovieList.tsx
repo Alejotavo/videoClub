@@ -14,7 +14,6 @@ function MovieList() {
   if (!titles || titles.length === 0) {
     return (
       <>
-        <h1>Movie List</h1>
         <p>Find some movie</p>
       </>
     );
@@ -22,15 +21,14 @@ function MovieList() {
 
   return (
     <>
-      <h1>Movie List</h1>
-      <table>
+      <table className="min-w-full bg-white">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Year</th>
-            <th>Rank</th>
-            <th>Actors</th>
-            <th>Poster</th>
+            <th className="py-2 px-4 border-b">Title</th>
+            <th className="py-2 px-4 border-b">Year</th>
+            <th className="py-2 px-4 border-b">Rank</th>
+            <th className="py-2 px-4 border-b">Actors</th>
+            <th className="py-2 px-4 border-b">Poster</th>
           </tr>
         </thead>
         <tbody>

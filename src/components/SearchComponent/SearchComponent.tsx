@@ -6,10 +6,10 @@ const { value, setValue, handleSearch, clearSearch } = useMovie();
 
   return (
      <>
-      <h1>Search Movies</h1>
-      <input type="text" placeholder="Search by title..." value={value} onChange={(e) => setValue(e.target.value)} />
-      <button onClick={handleSearch}>Search</button>
-      <button onClick={clearSearch}>Clear</button>
+      <h1 className="text-2xl font-bold mb-4">Search Movies</h1>
+      <input className="border border-gray-300 p-2 rounded" type="text" placeholder="Search by title..." value={value} onChange={(e) => setValue(e.target.value)} />
+      <button onClick={handleSearch} className="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+      <button onClick={clearSearch} className="bg-gray-300 text-black px-4 py-2 rounded"  >Clear</button>
      </>
   )
 }

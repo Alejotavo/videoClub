@@ -3,7 +3,7 @@ import type { Movie } from '../../models/movie';
 function MovieComponent({ movie: { imdbId, title, year, rank, posterUrl, actors } }: { movie: Movie }) {
 
   return (
-     <tr key={imdbId}>
+     <tr key={imdbId} className='hover:bg-gray-100'>
         <td>{title}</td>
         <td>{year}</td>
         <td>{rank}</td>
