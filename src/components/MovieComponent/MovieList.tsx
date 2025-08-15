@@ -1,9 +1,15 @@
 import { useMovie } from "../../contexts/movieContext";
+import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import MovieComponent from "./Movie";
 
 function MovieList() {
 
-  const { titles} = useMovie();
+  const { titles, loading} = useMovie();
+
+    if (loading) {
+    console.log("Loading movies...");
+    return <LoadingComponent />;
+  }
 
   if (!titles || titles.length === 0) {
     return (
