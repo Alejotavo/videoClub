@@ -13,11 +13,11 @@ function MovieList() {
 
   if (!titles || titles.length === 0) {
     return (
-      <>
+      <div className="d-flex text-center">
         <p>Find some movie</p>
-      </>
+      </div>
     );
-  }
+  } 
 
   return (
     <>
