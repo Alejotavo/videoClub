@@ -1,10 +1,12 @@
 import { useMovie } from "../../contexts/movieContext";
+import { useFavorites } from "../../hooks/useFavorites";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import MovieComponent from "./Movie";
 
 function MovieList() {
 
   const { titles, loading} = useMovie();
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites(); 
 
     if (loading) {
     console.log("Loading movies...");
@@ -29,10 +31,11 @@ function MovieList() {
             <th className="py-2 px-4 border-b">Rank</th>
             <th className="py-2 px-4 border-b">Actors</th>
             <th className="py-2 px-4 border-b">Poster</th>
+            <th className="py-2 px-4 border-b">Select</th>
           </tr>
         </thead>
         <tbody>
-          {titles.map(t => <MovieComponent key={t.imdbId} movie={t} />)}
+          {titles.map(t => <MovieComponent  key={t.imdbId} movie={t}  addFavorite={addFavorite} removeFavorite={removeFavorite} isFavorite={isFavorite} />)}
         </tbody>
       </table>
     </>
