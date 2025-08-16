@@ -2,33 +2,30 @@ import { useState, useEffect } from "react";
 import type { Movie } from "../models/movie";
 
 export function useFavorites() {
-  const [favorites, setFavorites] = useState<Movie[]>([]);
-
-  // Cargar favoritos desde localStorage al inicio
-  useEffect(() => {
+  const [favorites, setFavorites] = useState<Movie[]>(() => {
+    // inicializa desde localStorage al montar
     const stored = localStorage.getItem("favorites");
-    if (stored) {
-      setFavorites(JSON.parse(stored));
-    }
-  }, []);
+    return stored ? JSON.parse(stored) : [];
+  });
 
-  // Guardar favoritos cada vez que cambien
   useEffect(() => {
+    // sincroniza cada vez que cambie el estado
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   const addFavorite = (movie: Movie) => {
-    if (!favorites.find((f) => f.imdbId === movie.imdbId)) {
-      setFavorites([...favorites, movie]);
-    }
+    setFavorites((prev) => {
+      if (prev.find((f) => f.imdbId === movie.imdbId)) return prev;
+      return [...prev, movie];
+    });
   };
 
-  const removeFavorite = (imdbId: string) => {
-    setFavorites(favorites.filter((f) => f.imdbId !== imdbId));
+  const removeFavorite = (id: string) => {
+    setFavorites((prev) => prev.filter((f) => f.imdbId !== id));
   };
 
-  const isFavorite = (imdbId: string) => {
-    return favorites.some((f) => f.imdbId === imdbId);
+  const isFavorite = (id: string) => {
+    return favorites.some((f) => f.imdbId === id);
   };
 
   return { favorites, addFavorite, removeFavorite, isFavorite };
