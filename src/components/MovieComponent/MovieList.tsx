@@ -1,5 +1,5 @@
 import { useMovie } from "../../contexts/movieContext";
-import { useFavorites } from "../../hooks/useFavorites";
+import { useFavorites } from "../../contexts/favoritesContext";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import MovieComponent from "./Movie";
 
