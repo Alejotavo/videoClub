@@ -12,7 +12,7 @@ function MovieComponent({ movie, addFavorite, removeFavorite, isFavorite }: Movi
   const { imdbId, title, year, rank, posterUrl, actors } = movie;
     
   return (
-     <tr key={imdbId} className='hover:bg-gray-100'>
+     <tr className='hover:bg-gray-100'>
         <td>{title}</td>
         <td>{year}</td>
         <td>{rank}</td>
