@@ -9,17 +9,15 @@ import { FavoritesProvider } from './contexts/favoritesContext';
 function App() {
 
   return (
-
+    <FavoritesProvider>
       <MovieProvider>
-        <FavoritesProvider> 
         <SearchComponent />
-            <Routes>
-              <Route path="/" element={<MovieList />} />
-              <Route path="/favorites" element={<FavoritesComponent />} />
-          </Routes>
-        </FavoritesProvider>
-    </MovieProvider>
-
+        <Routes>
+          <Route path="/" element={<MovieList />} />
+          <Route path="/favorites" element={<FavoritesComponent />} />
+        </Routes>
+      </MovieProvider>
+    </FavoritesProvider>
   )
 }
 

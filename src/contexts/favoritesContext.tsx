@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Movie } from "../models/movie";
 
 interface FavoritesContextType {
@@ -21,6 +21,11 @@ export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
     const stored = localStorage.getItem("favorites");
     return stored ? JSON.parse(stored) : [];
   });
+
+    // ⚡ Sincroniza cada vez que cambie favorites
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   const addFavorite = (movie: Movie) => {
     setFavorites((prev) => [...prev, movie]);
