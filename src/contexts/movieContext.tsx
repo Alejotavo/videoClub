@@ -6,8 +6,7 @@ import { adaptApiMovie } from "../models/movie";
 interface MovieContextType {
   titles: Movie[] | null;
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  handleSearch: () => Promise<void>;
+  handleSearch: (query?: string) => Promise<void>;
   clearSearch: () => void;
   loading: boolean;
 }
@@ -24,13 +23,14 @@ export const MovieProvider = ({ children }: MovieProviderProps) => {
   const [value, setValue] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSearch = async () => {
-    if (!value.trim()) {
-      return;
-  }
+  const handleSearch = async (query?: string) => {
+  
+    const searchValue = query ?? value;
+  if (!searchValue.trim()) return;
+
     setLoading(true);
     try {
-      const fetchedTitle = await getSearchResult(value);
+      const fetchedTitle = await getSearchResult(searchValue);
       setTitles(fetchedTitle.description.map(adaptApiMovie));
       console.log("title", fetchedTitle.description.map(adaptApiMovie));
       setLoading(false);
@@ -47,7 +47,7 @@ export const MovieProvider = ({ children }: MovieProviderProps) => {
   };
 
   return (
-    <MovieContext.Provider value={{ titles, value, setValue, handleSearch, clearSearch, loading }}>
+    <MovieContext.Provider value={{ titles, value, handleSearch, clearSearch, loading }}>
       {children}
     </MovieContext.Provider>
   );

@@ -4,12 +4,11 @@ import { useState } from "react";
 
 function SearchComponent() {
 
-const { handleSearch, clearSearch, setValue } = useMovie();
+const { handleSearch, clearSearch } = useMovie();
 const [inputValue, setInputValue] = useState("");
 
   const onSearch = () => {
-   setValue(inputValue);
-   handleSearch();
+   handleSearch(inputValue);
   };
 
   return (
