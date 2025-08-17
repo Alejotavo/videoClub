@@ -32,7 +32,6 @@ export const MovieProvider = ({ children }: MovieProviderProps) => {
     try {
       const fetchedTitle = await getSearchResult(searchValue);
       setTitles(fetchedTitle.description.map(adaptApiMovie));
-      console.log("title", fetchedTitle.description.map(adaptApiMovie));
       setLoading(false);
     } catch (err) {
       console.error("Error fetching movies:", err);

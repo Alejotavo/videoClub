@@ -8,10 +8,8 @@ export async function getSearchResult(title: string): Promise<MovieApiResponse> 
           q: title,
         },
     });
-    console.log("Fetched movies:", response.data);
     return response.data;
   } catch (error) {
-    console.error('Error on get Movies:', error);
     throw error;
   }
 }
