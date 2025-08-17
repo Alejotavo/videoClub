@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Movie } from "../models/movie";
 
 interface FavoritesContextType {
@@ -27,17 +27,17 @@ export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
-  const addFavorite = (movie: Movie) => {
-    setFavorites((prev) => [...prev, movie]);
-  };
+    const addFavorite = useCallback((movie: Movie) => {
+      setFavorites((prev) => [...prev, movie]);
+    }, []);
 
-  const removeFavorite = (id: string) => {
-    setFavorites((prev) => prev.filter((movie) => movie.imdbId !== id));
-  };
+    const removeFavorite = useCallback((id: string) => {
+      setFavorites((prev) => prev.filter((movie) => movie.imdbId !== id));
+    }, []);
 
-  const isFavorite = (id: string) => {
-    return favorites.some((movie) => movie.imdbId === id);
-  };
+    const isFavorite = useCallback((id: string) => {
+      return favorites.some((movie) => movie.imdbId === id);
+    }, [favorites]);
 
   return (
     <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import type { Movie } from '../../models/movie';
 
 type MovieComponentProps = {
@@ -35,4 +36,4 @@ function MovieComponent({ movie, addFavorite, removeFavorite, isFavorite }: Movi
   )
 }
 
-export default MovieComponent
+export default memo(MovieComponent)
