@@ -2,13 +2,18 @@ import { useMovie } from "../../contexts/movieContext";
 import { useFavorites } from "../../contexts/favoritesContext";
 import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import MovieComponent from "./Movie";
+import ErrorComponent from "../ErrorComponent/ErrorComponent";
 
 function MovieList() {
-  const { titles, loading} = useMovie();
+  const { titles, loading, error} = useMovie();
   const { addFavorite, removeFavorite, isFavorite } = useFavorites(); 
 
-    if (loading) {
-    return <LoadingComponent />;
+  if (loading) {
+      return <LoadingComponent />;
+    }
+
+  if (error) {
+    return <ErrorComponent />;
   }
 
   if (!titles || titles.length === 0) {

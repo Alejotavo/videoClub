@@ -15,6 +15,7 @@ const [inputValue, setInputValue] = useState("");
   setInputValue("");
   clearSearch();
 };
+
   return (
     <div className="bg-gray-800 text-white p-4 w-full flex flex-row flex-nowrap justify-between">
       <nav className="p-4 bg-gray-800 text-white flex gap-4">

@@ -9,6 +9,7 @@ interface MovieContextType {
   handleSearch: (query?: string) => Promise<void>;
   clearSearch: () => void;
   loading: boolean;
+  error: string | null;
 }
 
 interface MovieProviderProps {
@@ -22,6 +23,7 @@ export const MovieProvider = ({ children }: MovieProviderProps) => {
   const [titles, setTitles] = useState<Movie[] | null>(null);
   const [value, setValue] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);  
 
   const handleSearch = async (query?: string) => {
   
@@ -33,8 +35,9 @@ export const MovieProvider = ({ children }: MovieProviderProps) => {
       const fetchedTitle = await getSearchResult(searchValue);
       setTitles(fetchedTitle.description.map(adaptApiMovie));
       setLoading(false);
-    } catch (err) {
-      console.error("Error fetching movies:", err);
+    } catch (err: any) {
+      console.error("Error fetching movies:", err.message);
+      setError(err.message);
     }finally {
     setLoading(false);
   }
@@ -46,7 +49,7 @@ export const MovieProvider = ({ children }: MovieProviderProps) => {
   };
 
   return (
-    <MovieContext.Provider value={{ titles, value, handleSearch, clearSearch, loading }}>
+    <MovieContext.Provider value={{ titles, value, handleSearch, clearSearch, loading, error }}>
       {children}
     </MovieContext.Provider>
   );
