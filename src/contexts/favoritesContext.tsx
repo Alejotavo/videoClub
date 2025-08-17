@@ -17,12 +17,12 @@ const FavoritesContext = createContext<FavoritesContextType | undefined>(undefin
 export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
 
   const [favorites, setFavorites] = useState<Movie[]>(() => {
-    // inicializa desde localStorage al montar
+
     const stored = localStorage.getItem("favorites");
     return stored ? JSON.parse(stored) : [];
   });
 
-    // ⚡ Sincroniza cada vez que cambie favorites
+
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
