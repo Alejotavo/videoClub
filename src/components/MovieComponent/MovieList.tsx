@@ -4,7 +4,7 @@ import LoadingComponent from "../LoadingComponent/LoadingComponent";
 import MovieComponent from "./Movie";
 
 function MovieList() {
-
+  console.log("Rendering MovieList");
   const { titles, loading} = useMovie();
   const { addFavorite, removeFavorite, isFavorite } = useFavorites(); 
 
