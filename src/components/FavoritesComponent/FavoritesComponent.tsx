@@ -49,6 +49,9 @@ function FavoritesComponent() {
               <label className="font-medium text-gray-700">Rank:</label> {item.rank}
             </span>
             <span className="block">
+              <label className="font-medium text-gray-700">Actors:</label> {item.actors}
+            </span>
+            <span className="block">
               <img src={item.posterUrl} alt={item.title} className="w-32 h-48 object-cover" width={100}/>
             </span>
           </div>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useMovie } from "../../contexts/movieContext";
 import { useState } from "react";
 
@@ -7,8 +7,15 @@ function SearchComponent() {
 const { handleSearch, clearSearch } = useMovie();
 const [inputValue, setInputValue] = useState("");
 
+ const location = useLocation();
+  const navigate = useNavigate();
+
   const onSearch = () => {
    handleSearch(inputValue);
+
+   if (location.pathname !== "/") {
+      navigate("/");
+    }
   };
 
   const onClear = () => {
